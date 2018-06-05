@@ -1,7 +1,8 @@
 {
   "autoload": {
     "psr-4": {
-      "GYG\\Library\\": "__src/library/"
+      "GYG\\Library\\": "__src/library/",
+      "GYG\\Test\\": "/tests/"
     }
   },
   "require": {

@@ -26,7 +26,7 @@ class CLI
 	 *
 	 * @param string $startTime
 	 * @param string $endTime
-	 * @param int $numberOfTravellers
+	 * @param int    $numberOfTravellers
 	 *
 	 * @throws Library\Exception\InvalidData
 	 */
@@ -39,9 +39,8 @@ class CLI
 		// Now we will search the products based on the CLI arguments
 		$Product           = (new Product(new Product\Request($Provider)));
 		$availableProducts = $Product->Search($startTime, $endTime, $numberOfTravellers);
-		$sortedProducts    = $Product->Sort($availableProducts);
 
 		// Return the response in JSON format
-		(new Product\Response())->JSON($sortedProducts);
+		(new Product\Response())->JSON($availableProducts);
 	}
 }

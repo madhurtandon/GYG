@@ -45,6 +45,14 @@ class Product
 	 */
 	public function Search($startTime, $endTime, $numberOfTravellers)
 	{
+		if (empty($startTime)) {
+			throw new Exception\InvalidData('Start time can not be empty');
+		} else if (empty($endTime)) {
+			throw new Exception\InvalidData('End time can not be empty');
+		} else if (empty($numberOfTravellers)) {
+			throw new Exception\InvalidData('Number of travellers can not empty');
+		}
+
 		$results = [];
 
 		$products = $this->Request->GetProducts();
@@ -57,33 +65,25 @@ class Product
 				if ($activityStartTimestamp >= $startTimestamp
 					&& $activityStartTimestamp <= $endTimestamp
 					&& $product[Request::PLACES_AVAILABLE] >= $numberOfTravellers) {
-					$results[] = [self::PRODUCT_ID           => $product[Request::PRODUCT_ID],
-								  self::AVAILABLE_STARTTIMES => $product[Request::ACTIVITY_START_DATETIME]];
+					if (array_key_exists($product[Request::PRODUCT_ID], $results)) {
+						array_push($results[$product[Request::PRODUCT_ID]][self::AVAILABLE_STARTTIMES], $product[Request::ACTIVITY_START_DATETIME]);
+						usort($results[$product[Request::PRODUCT_ID]][self::AVAILABLE_STARTTIMES], [$this, 'Sort']);
+					} else {
+						$results[$product[Request::PRODUCT_ID]] = [self::AVAILABLE_STARTTIMES => [$product[Request::ACTIVITY_START_DATETIME]]];
+					}
 				}
 			}
 		}
 
-		return $results;
-	}
+		ksort($results);
 
-	/**
-	 * @author Madhur Tandon
-	 *
-	 * @param array $results
-	 *
-	 * @return array
-	 */
-	public function Sort(array $results)
-	{
-		uasort($results, [$this, 'USort']);
-
-		$response = [];
-		foreach ($results as $result) {
-			$response[] = [self::PRODUCT_ID           => $result[self::PRODUCT_ID],
-						   self::AVAILABLE_STARTTIMES => [$result[self::AVAILABLE_STARTTIMES]]];
+		$finalResults = [];
+		foreach ($results as $productID => $result) {
+			$finalResults[] = [self::PRODUCT_ID           => $productID,
+							   self::AVAILABLE_STARTTIMES => $result[self::AVAILABLE_STARTTIMES]];
 		}
 
-		return $response;
+		return $finalResults;
 	}
 
 	/**
@@ -101,13 +101,13 @@ class Product
 	/**
 	 * @author Madhur Tandon
 	 *
-	 * @param array $a
-	 * @param array $b
+	 * @param string $a
+	 * @param string $b
 	 *
 	 * @return int
 	 */
-	public function USort($a, $b)
+	public function Sort($a, $b)
 	{
-		return $this->ConvertISOToUnixTimestamp($a['available_starttimes']) - $this->ConvertISOToUnixTimestamp($b['available_starttimes']);
+		return $this->ConvertISOToUnixTimestamp($a) - $this->ConvertISOToUnixTimestamp($b);
 	}
 }

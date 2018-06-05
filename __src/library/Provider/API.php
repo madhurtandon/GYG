@@ -13,6 +13,8 @@ use GYG\Library\Provider;
 use GYG\Library\Exception;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 
 /**
  * API client to retrieve the data from the external API
@@ -44,7 +46,14 @@ class API extends Provider
 	 */
 	public function Response()
 	{
-		$clientResponse = $this->HTTPClient->get(self::URL);
+		try {
+			$clientResponse = $this->HTTPClient->get(self::URL);
+		} catch (ServerException $Exception) {
+			throw new Exception\RequestFailed('Error to fetch data');
+		} catch (ClientException $Exception) {
+			throw new Exception\RequestFailed('Error to fetch data');
+		}
+
 		if ($clientResponse->getStatusCode() !== 200) {
 			throw new Exception\RequestFailed('Error to fetch data');
 		}
