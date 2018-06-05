@@ -38,8 +38,8 @@ These instructions will get you a copy of the project up and running on your loc
 ## How it works
 
 1. There is a API provider that makes the API request using a guzzle http client.
-2. Product Request class which takes the API object and get the data and validate each item
-3. Product class retrieves the product_ids of the products that are available to be booked given a period of time and the requested number of travellers.
-4. Product Response class prints response in a JSON format
+2. Product Request takes the API object, get the data and validate each item
+3. Product retrieves the product_ids of the products that are available to be booked given a period of time and the requested number of travellers.
+4. Product Response print response in a JSON format
   
   
