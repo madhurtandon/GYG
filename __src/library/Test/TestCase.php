@@ -2,7 +2,7 @@
 /**
  * Customer Invitation
  *
- * @package        App
+ * @package        GYG
  * @author         Madhur Tandon
  */
 

@@ -2,7 +2,7 @@
 /**
  * GYG product availabilities
  *
- * @package        App
+ * @package        GYG
  * @author         Madhur Tandon
  */
 
