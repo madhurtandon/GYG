@@ -34,6 +34,8 @@ class CLI
 	{
 		// Initialise the HTTP Client
 		$HTTPClient = new Client();
+
+		// Initialise the Provider
 		$Provider   = new API($HTTPClient);
 
 		// Now we will search the products based on the CLI arguments
