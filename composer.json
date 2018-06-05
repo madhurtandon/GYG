@@ -4,6 +4,9 @@
       "GYG\\Library\\": "__src/library/"
     }
   },
+  "require": {
+    "guzzlehttp/guzzle": "^6.2"
+  },
   "require-dev": {
     "phpunit/phpunit": "^7.1"
   }
