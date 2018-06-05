@@ -16,7 +16,7 @@ use GYG\Library\Exception;
 /**
  * This exception is used to denote that invalid data was provided as part of arguments or result.
  *
- * @package App\Library
+ * @package GYG\Library\Exception
  */
 class InvalidData extends Exception
 {

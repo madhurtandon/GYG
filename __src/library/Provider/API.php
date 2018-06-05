@@ -6,19 +6,20 @@
  * @author         Madhur Tandon
  */
 
-namespace GYG\Library\Client;
+namespace GYG\Library\Provider;
 
 
-use GuzzleHttp\Client;
+use GYG\Library\Provider;
 use GYG\Library\Exception;
 
+use GuzzleHttp\Client;
 
 /**
  * API client to retrieve the data from the external API
  *
- * @package GYG\Library\Client
+ * @package GYG\Library\Provider
  */
-class API
+class API extends Provider
 {
 	const URL = 'http://www.mocky.io/v2/58ff37f2110000070cf5ff16';
 
@@ -48,7 +49,8 @@ class API
 			throw new Exception\RequestFailed('Error to fetch data');
 		}
 
-		$response = json_decode($clientResponse->getBody()->getContents(), true);
+		$response = json_decode($clientResponse->getBody()
+											   ->getContents(), true);
 
 		return $response;
 	}

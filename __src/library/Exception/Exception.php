@@ -11,7 +11,7 @@ namespace GYG\Library;
 
 
 /**
- * @package App\Library
+ * @package GYG\Library
  */
 class Exception extends \Exception
 {

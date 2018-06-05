@@ -15,3 +15,6 @@ require_once DIR_PREFIX . DIRECTORY_SEPARATOR . 'CLI.php';
 
 // Validate the CLI arguments
 (new \GYG\Library\Validator())->IsValidCLIArguments($argv);
+
+// Print the solution on CLI
+(new \GYG\CLI())->Solution($argv[1], $argv[2], $argv[3]);

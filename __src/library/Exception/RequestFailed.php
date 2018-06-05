@@ -16,7 +16,7 @@ use GYG\Library\Exception;
 /**
  * This exception is used when we try to make a API request and that get fail
  *
- * @package App\Library
+ * @package GYG\Library\Exception
  */
 class RequestFailed extends Exception
 {

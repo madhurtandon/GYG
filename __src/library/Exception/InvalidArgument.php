@@ -15,7 +15,7 @@ use GYG\Library\Exception;
 /**
  * This exception is used to denote that the arguments that were provided to a function or request were invalid.
  *
- * @package App\Library
+ * @package GYG\Library\Exception
  */
 class InvalidArgument extends Exception
 {
