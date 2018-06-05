@@ -14,7 +14,7 @@ use GYG\Library\Provider;
 
 
 /**
- * This class will make the API request and validate the response from the API
+ * Request class validate the response from the API
  *
  * @package GYG\Library\Product
  */
