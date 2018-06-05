@@ -14,3 +14,4 @@ require_once(DIR_PREFIX . '/vendor/autoload.php');
 require_once DIR_PREFIX . DIRECTORY_SEPARATOR . 'CLI.php';
 
 // Validate the CLI arguments
+(new \GYG\Library\Validator())->IsValidCLIArguments($argv);
